@@ -1,10 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.chatapp;
 
 import java.util.Scanner;
 
+/**
+ *
+ * @author peter
+ */
 public class ChatApp {
+    
+    private static Scanner input = new Scanner(System.in);
+    
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        
+        // Load existing messages from file
+        MessageClass.loadMessagesFromFile();
 
         System.out.println("--Registration---");
         
@@ -19,7 +32,6 @@ public class ChatApp {
         while (true) {
             System.out.print("Enter Username: ");
             user = input.nextLine();
-            // We create a temporary object to check the name
             Login temp = new Login(user, "", "", ""); 
             if (temp.checkUserName()) {
                 System.out.println("Username successfully captured.");
@@ -57,7 +69,7 @@ public class ChatApp {
             }
         }
 
-        // Finalize the actual user object
+        // Create user object
         Login auth = new Login(user, pass, fName, lName);
 
         // --- Login Section ---
@@ -69,5 +81,99 @@ public class ChatApp {
 
         boolean loginSuccess = auth.loginUser(loginUser, loginPass);
         System.out.println(auth.returnLoginStatus(loginSuccess));
+        
+        // ========== PART 2: AFTER LOGIN ==========
+        if (loginSuccess) {
+            System.out.println("\nWelcome to QuickChat");
+            showMainMenu();
+        } else {
+            System.out.println("Login failed. Exiting application.");
+        }
+        
+        input.close();
+    }
+    
+    // ========== MAIN MENU (While Loop until Quit) ==========
+    public static void showMainMenu() {
+        int choice;
+        do {
+            System.out.println("\n=== MAIN MENU ===");
+            System.out.println("1. Send Messages");
+            System.out.println("2. Show recently sent messages");
+            System.out.println("3. Quit");
+            System.out.print("Choose option (1-3): ");
+            choice = input.nextInt();
+            input.nextLine();
+            
+            if (choice == 1) {
+                sendMessages();
+            } else if (choice == 2) {
+                System.out.println("Coming Soon");
+            } else if (choice == 3) {
+                System.out.println("Goodbye! Thanks for using QuickChat.");
+                // Save messages before exiting
+                MessageClass.saveMessagesToFile();
+            } else {
+                System.out.println("Invalid choice. Please enter 1, 2, or 3.");
+            }
+        } while (choice != 3);
+    }
+    
+    // ========== SEND MESSAGES (For Loop) ==========
+    public static void sendMessages() {
+        System.out.print("\nHow many messages do you want to send? ");
+        int numMessages = input.nextInt();
+        input.nextLine();
+        
+        // FOR loop - runs exact number of times user specified
+        for (int i = 1; i <= numMessages; i++) {
+            System.out.println("\n=== MESSAGE " + i + " ===");
+            
+            // Get recipient with validation
+            String recipient;
+            while (true) {
+                System.out.print("Enter recipient cell number (+27XXXXXXXXX): ");
+                recipient = input.nextLine();
+                
+                MessageClass tempMsg = new MessageClass();
+                String result = tempMsg.checkRecipientCell(recipient);
+                System.out.println(result);
+                if (result.equals("Cell phone number successfully captured.")) {
+                    break;
+                }
+            }
+            
+            // Get message with validation
+            String messageText;
+            while (true) {
+                System.out.print("Enter your message (max 250 characters): ");
+                messageText = input.nextLine();
+                
+                MessageClass tempMsg = new MessageClass();
+                String result = tempMsg.checkMessageLength(messageText);
+                System.out.println(result);
+                if (result.equals("Message ready to send.")) {
+                    break;
+                }
+            }
+            
+            // Create the message object
+            MessageClass newMessage = new MessageClass(i, recipient, messageText);
+            
+            // Ask user what to do with the message (Send/Disregard/Store)
+            String actionResult = newMessage.sendMessageOptions();
+            System.out.println(actionResult);
+            
+            // Display the message details
+            newMessage.displayMessage();
+            
+            System.out.println("-".repeat(40));
+        }
+        
+        // Show total messages sent
+        System.out.println("\nTotal messages sent: " + MessageClass.getTotalMessagesSent());
+        
+        // Save messages to file
+        MessageClass.saveMessagesToFile();
     }
 }

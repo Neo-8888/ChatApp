@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: TestClasess.LoginUnitTest
+Test set: TestClasess.MessageClasstest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 s -- in TestClasess.LoginUnitTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.077 s -- in TestClasess.MessageClasstest
