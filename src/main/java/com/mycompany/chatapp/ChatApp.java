@@ -111,8 +111,8 @@ public class ChatApp {
                 System.out.println("Coming Soon");
             } else if (choice == 3) {
                 System.out.println("Goodbye! Thanks for using QuickChat.");
-                // Save messages before exiting
-                MessageClass.saveMessagesToFile();
+                // CHANGE THIS LINE:
+                MessageClass.storeMessage(); 
             } else {
                 System.out.println("Invalid choice. Please enter 1, 2, or 3.");
             }
@@ -132,7 +132,7 @@ public class ChatApp {
             // Get recipient with validation
             String recipient;
             while (true) {
-                System.out.print("Enter recipient cell number (+27XXXXXXXXX): ");
+                System.out.print("Enter recipient cell number (+27): ");
                 recipient = input.nextLine();
                 
                 MessageClass tempMsg = new MessageClass();
@@ -170,10 +170,11 @@ public class ChatApp {
             System.out.println("-".repeat(40));
         }
         
-        // Show total messages sent
+       // Show total messages sent
         System.out.println("\nTotal messages sent: " + MessageClass.getTotalMessagesSent());
         
-        // Save messages to file
-        MessageClass.saveMessagesToFile();
+        // CHANGE THIS LINE:
+        MessageClass.storeMessage();
     }
 }
+    

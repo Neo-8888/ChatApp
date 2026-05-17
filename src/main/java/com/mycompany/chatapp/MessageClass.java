@@ -132,7 +132,7 @@ public class MessageClass {
     }
     
     // ========== METHOD 8: Save messages to JSON file ==========
-    public static void saveMessagesToFile() {
+        public static void storeMessage() {
         try {
             FileWriter writer = new FileWriter("messages.json");
             writer.write("[\n");
