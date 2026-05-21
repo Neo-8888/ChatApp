@@ -132,6 +132,8 @@ public class MessageClass {
     }
     
     // ========== METHOD 8: Save messages to JSON file ==========
+      // Reference: JSON structure learned from www.w3schools.com/js/js_json.asp
+    // Additional reference: https://www.geeksforgeeks.org/java/working-with-json-data-in-java/
         public static void storeMessage() {
         try {
             FileWriter writer = new FileWriter("messages.json");
@@ -163,6 +165,8 @@ public class MessageClass {
     }
     
     // ========== METHOD 9: Load messages from JSON file ==========
+    // Reference: JSON structure learned from www.w3schools.com/js/js_json.asp
+    // Additional reference: https://www.geeksforgeeks.org/java/working-with-json-data-in-java/
     public static void loadMessagesFromFile() {
         // Clear current list
         allMessages.clear();
