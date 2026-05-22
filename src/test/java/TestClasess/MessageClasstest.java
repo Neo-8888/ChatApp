@@ -17,7 +17,7 @@ public class MessageClasstest {
     public MessageClasstest() {
     }
     
-      // ========== TEST 1: Message Length SUCCESS (≤ 250 chars) ==========
+      //TEST 1: Message Length SUCCESS 
     @Test
     public void testMessageLengthSuccess() {
         System.out.println("Test: Message length success (≤ 250 chars)");
@@ -30,14 +30,14 @@ public class MessageClasstest {
         System.out.println("✓ Passed: Short message is accepted\n");
     }
     
-    // ========== TEST 2: Message Length FAILURE (> 250 chars) ==========
+    // \TEST 2: Message Length FAILURE
     @Test
     public void testMessageLengthFailure() {
         System.out.println("Test: Message length failure (> 250 chars)");
         
         MessageClass msg = new MessageClass();
         
-        // Create a message that is 260 characters long
+       
         StringBuilder longMessage = new StringBuilder();
         for (int i = 0; i < 260; i++) {
             longMessage.append("a");
@@ -45,12 +45,12 @@ public class MessageClasstest {
         
         String result = msg.checkMessageLength(longMessage.toString());
         
-        // Check that the message contains the correct text
+        
         assertTrue(result.contains("exceeds 250 characters by 10"));
         System.out.println("✓ Passed: Long message is rejected with correct message\n");
     }
     
-    // ========== TEST 3: Recipient SUCCESS (+27 format) ==========
+    // TEST 3: Recipient SUCCESS (+27 format) 
     @Test
     public void testRecipientSuccess() {
         System.out.println("Test: Recipient format success (+27XXXXXXXXX)");
@@ -62,7 +62,7 @@ public class MessageClasstest {
         System.out.println("✓ Passed: Valid phone number accepted\n");
     }
     
-    // ========== TEST 4: Recipient FAILURE (wrong format) ==========
+    //TEST 4: Recipient FAILURE wrong format
     @Test
     public void testRecipientFailure() {
         System.out.println("Test: Recipient format failure (wrong format)");
@@ -74,14 +74,14 @@ public class MessageClasstest {
         System.out.println("✓ Passed: Invalid phone number rejected\n");
     }
     
-    // ========== TEST 5: Message Hash Correct (from rubric test data) ==========
+    // TEST 5: Message Hash 
     @Test
     public void testMessageHashCorrect() {
         System.out.println("Test: Message hash creation");
         
         MessageClass msg = new MessageClass();
         
-        // Using test data from rubric
+        // Using test data from the POE
         // Message ID starting with "00", Message number = 0, Message = "HI THANKS"
         String hash = msg.createMessageHash("0012345678", 0, "HI THANKS");
         
@@ -89,7 +89,7 @@ public class MessageClasstest {
         System.out.println("✓ Passed: Message hash is correct format\n");
     }
     
-    // ========== TEST 6: Message Hash from Test Case 1 in Rubric ==========
+    //  TEST 6: Message Hash from Test Case
     @Test
     public void testMessageHashFromRubric() {
         System.out.println("Test: Message hash from rubric test case 1");
@@ -103,7 +103,7 @@ public class MessageClasstest {
         System.out.println("✓ Passed: Message hash matches rubric example\n");
     }
     
-    // ========== TEST 7: Message ID is 10 digits ==========
+    //  TEST 7: Message ID is 10 digits
     @Test
     public void testMessageIdIsTenDigits() {
         System.out.println("Test: Message ID is 10 digits");
@@ -112,11 +112,11 @@ public class MessageClasstest {
         String messageId = msg.generateMessageId();
         
         assertEquals(10, messageId.length());
-        assertTrue(messageId.matches("\\d{10}")); // checks if all digits
+        assertTrue(messageId.matches("\\d{10}")); 
         System.out.println("✓ Passed: Message ID is 10 digits: " + messageId + "\n");
     }
     
-    // ========== TEST 8: Message Hash with one word message ==========
+    // TEST 8: Message Hash with one word messag
     @Test
     public void testMessageHashWithOneWord() {
         System.out.println("Test: Message hash with one word message");

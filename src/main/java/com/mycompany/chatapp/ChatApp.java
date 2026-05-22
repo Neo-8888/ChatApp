@@ -16,18 +16,18 @@ public class ChatApp {
     
     public static void main(String[] args) {
         
-        // Load existing messages from file
+        // Loading file
         MessageClass.loadMessagesFromFile();
 
-        System.out.println("--Registration---");
+        System.out.println("--Registration Part---");
         
-        System.out.print("Enter First Name: ");
+        System.out.print("Enter your First Name: ");
         String fName = input.nextLine();
         
-        System.out.print("Enter Last Name: ");
+        System.out.print("Enteryour Last Name: ");
         String lName = input.nextLine();
         
-        // --- Username Validation ---
+        // Username Validation using the while loop
         String user;
         while (true) {
             System.out.print("Enter Username: ");
@@ -41,7 +41,7 @@ public class ChatApp {
             }
         }
 
-        // --- Password Validation ---
+        // Password Validation
         String pass;
         while (true) {
             System.out.print("Enter Password: ");
@@ -82,7 +82,7 @@ public class ChatApp {
         boolean loginSuccess = auth.loginUser(loginUser, loginPass);
         System.out.println(auth.returnLoginStatus(loginSuccess));
         
-        // ========== PART 2: AFTER LOGIN ==========
+        // Part 2 work starts here
         if (loginSuccess) {
             System.out.println("\nWelcome to QuickChat");
             showMainMenu();
@@ -93,11 +93,11 @@ public class ChatApp {
         input.close();
     }
     
-    // ========== MAIN MENU (While Loop until Quit) ==========
+    //  While Loop until Quit
     public static void showMainMenu() {
         int choice;
         do {
-            System.out.println("\n=== MAIN MENU ===");
+            System.out.println("\n MAIN MENU ");
             System.out.println("1. Send Messages");
             System.out.println("2. Show recently sent messages");
             System.out.println("3. Quit");
@@ -119,17 +119,17 @@ public class ChatApp {
         } while (choice != 3);
     }
     
-    // ========== SEND MESSAGES (For Loop) ==========
+    // send message using the for loop
     public static void sendMessages() {
-        System.out.print("\nHow many messages do you want to send? ");
+        System.out.print("\n How many messages do you want to send? ");
         int numMessages = input.nextInt();
         input.nextLine();
         
-        // FOR loop - runs exact number of times user specified
+        // i used the incrementing runs exact number of times user specified
         for (int i = 1; i <= numMessages; i++) {
             System.out.println("\n=== MESSAGE " + i + " ===");
             
-            // Get recipient with validation
+           
             String recipient;
             while (true) {
                 System.out.print("Enter recipient cell number (+27): ");
@@ -173,7 +173,7 @@ public class ChatApp {
        // Show total messages sent
         System.out.println("\nTotal messages sent: " + MessageClass.getTotalMessagesSent());
         
-        // CHANGE THIS LINE:
+        
         MessageClass.storeMessage();
     }
 }

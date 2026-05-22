@@ -16,25 +16,25 @@ import java.util.ArrayList;
  */
 public class MessageClass {
     
-    // ========== VARIABLES ==========
+   
     private String messageId;
     private int messageNumber;
     private String recipient;
     private String messageText;
     private String messageHash;
-    private String status; // "sent", "stored", "disregarded"
+    private String status; // this one is for "sent", "stored", "disregarded" messages
     
     private static int totalMessagesSent = 0;
     private static Scanner input = new Scanner(System.in);
     private static ArrayList<MessageClass> allMessages = new ArrayList<>();
     
-    // ========== CONSTRUCTORS ==========
+    // CONSTRUCTORS 
     
     // No-argument constructor (needed for JSON)
     public MessageClass() {
     }
     
-    // Constructor to create a new message
+    // Constructor to create a new message using the auto generate
     public MessageClass(int messageNumber, String recipient, String messageText) {
         this.messageId = generateMessageId();
         this.messageNumber = messageNumber;
@@ -42,17 +42,17 @@ public class MessageClass {
         this.messageText = messageText;
         this.messageHash = createMessageHash(this.messageId, this.messageNumber, this.messageText);
         this.status = "pending";
-        allMessages.add(this); // Add to list when created
+        allMessages.add(this); 
     }
     
-    // ========== METHOD 1: Generate Message ID ==========
+    // METHOD 1: Generate Message ID 
     public String generateMessageId() {
         Random rand = new Random();
         long randomId = 1000000000L + (long)(rand.nextDouble() * 9000000000L);
         return String.valueOf(randomId);
     }
     
-    // ========== METHOD 2: Check Message Length ==========
+    // METHOD 2: Check Message Length 
     public String checkMessageLength(String message) {
         if (message.length() <= 250) {
             return "Message ready to send.";
@@ -62,7 +62,7 @@ public class MessageClass {
         }
     }
     
-    // ========== METHOD 3: Check Recipient Cell Number ==========
+    // METHOD 3: Check Recipient Cell Number(i made my regex to accept southafrican international code )
     public String checkRecipientCell(String phone) {
         if (phone != null && phone.matches("^\\+27[0-9]{9}$")) {
             return "Cell phone number successfully captured.";
@@ -71,7 +71,7 @@ public class MessageClass {
         }
     }
     
-    // ========== METHOD 4: Create Message Hash ==========
+    //  METHOD 4: Create Message Hash
     public String createMessageHash(String messageId, int messageNumber, String messageText) {
         String firstTwoDigits = messageId.substring(0, 2);
         
@@ -88,7 +88,7 @@ public class MessageClass {
         return firstTwoDigits + ":" + messageNumber + ":" + firstWord + lastWord;
     }
     
-    // ========== METHOD 5: Send Message Options Menu ==========
+    //  METHOD 5: Send Message Options Menu  switch structure was used
     public String sendMessageOptions() {
         System.out.println("\nWhat would you like to do?");
         System.out.println("1. Send Message");
@@ -115,7 +115,7 @@ public class MessageClass {
         }
     }
     
-    // ========== METHOD 6: Display Message Details ==========
+    //  METHOD 6: Display Message Details 
     public void displayMessage() {
         System.out.println("\n--- MESSAGE DETAILS ---");
         System.out.println("Message ID: " + messageId);
@@ -126,12 +126,14 @@ public class MessageClass {
         System.out.println("------------------------");
     }
     
-    // ========== METHOD 7: Get Total Messages Sent ==========
+    //  METHOD 7: Get Total Messages Sent 
     public static int getTotalMessagesSent() {
         return totalMessagesSent;
     }
     
-    // ========== METHOD 8: Save messages to JSON file ==========
+    // METHOD 8: Save messages to JSON file with attribution 
+    // Reference: JSON structure learned from www.w3schools.com/js/js_json.asp
+    // Additional reference: https://www.geeksforgeeks.org/java/working-with-json-data-in-java/
         public static void storeMessage() {
         try {
             FileWriter writer = new FileWriter("messages.json");
@@ -162,19 +164,20 @@ public class MessageClass {
         }
     }
     
-    // ========== METHOD 9: Load messages from JSON file ==========
+    // METHOD 9: Load messages from JSON file
+    // Reference: JSON structure learned from www.w3schools.com/js/js_json.asp
+    // Additional reference: https://www.geeksforgeeks.org/java/working-with-json-data-in-java/
     public static void loadMessagesFromFile() {
         // Clear current list
         allMessages.clear();
         
         // For now, start with empty list
-        // Full JSON parsing would require external library like Jackson
         // Reference: https://www.w3schools.com/js/js_json.asp
         
         System.out.println("Loaded " + allMessages.size() + " previous messages.");
     }
     
-    // ========== GETTERS AND SETTERS ==========
+    // GETTERS AND SETTERS 
     public String getMessageId() { return messageId; }
     public void setMessageId(String messageId) { this.messageId = messageId; }
     
