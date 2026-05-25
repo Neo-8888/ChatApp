@@ -26,29 +26,29 @@ public class MessageClasstest {
         String shortMessage = "Hi Mike, can you join us for dinner tonight?";
         String result = msg.checkMessageLength(shortMessage);
         
+        
         assertEquals("Message ready to send.", result);
         System.out.println("✓ Passed: Short message is accepted\n");
+    }    
+    
+      // TEST 2: Message Length FAILURE
+@Test
+public void testMessageLengthFailure() {
+    System.out.println("Test: Message length failure (> 250 chars)");
+    
+    MessageClass msg = new MessageClass();
+    
+    StringBuilder longMessage = new StringBuilder();
+    for (int i = 0; i < 260; i++) {
+        longMessage.append("a");
     }
     
-    // \TEST 2: Message Length FAILURE
-    @Test
-    public void testMessageLengthFailure() {
-        System.out.println("Test: Message length failure (> 250 chars)");
-        
-        MessageClass msg = new MessageClass();
-        
-       
-        StringBuilder longMessage = new StringBuilder();
-        for (int i = 0; i < 260; i++) {
-            longMessage.append("a");
-        }
-        
-        String result = msg.checkMessageLength(longMessage.toString());
-        
-        
-        assertTrue(result.contains("exceeds 250 characters by 10"));
-        System.out.println("✓ Passed: Long message is rejected with correct message\n");
-    }
+    String result = msg.checkMessageLength(longMessage.toString());
+    
+    // CHANGE THIS LINE to use assertEquals with the exact required string:
+    assertEquals("Message exceeds 250 characters by 10; please reduce the size.", result);
+    System.out.println("✓ Passed: Long message is rejected with correct message\n");
+}
     
     // TEST 3: Recipient SUCCESS (+27 format) 
     @Test

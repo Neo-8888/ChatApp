@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestClasess.MessageClasstest" time="0.198" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestClasess.MessageClasstest" time="0.073" tests="1" errors="0" skipped="0" failures="0">
   <properties>
+    <property name="jpda.address" value="64239"/>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
@@ -10,14 +11,15 @@
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Africa/Johannesburg"/>
+    <property name="forkMode" value="once"/>
     <property name="os.name" value="Windows 11"/>
     <property name="java.vm.specification.version" value="25"/>
     <property name="user.country" value="ZA"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\peter\AppData\Local\Temp\surefire12924801107298030634\surefirebooter-20260522195723985_3.jar C:\Users\peter\AppData\Local\Temp\surefire12924801107298030634 2026-05-22T19-57-23_641-jvmRun1 surefire-20260522195723985_1tmp surefire_0-20260522195723985_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\peter\AppData\Local\Temp\surefire15543189749260192655\surefirebooter-20260525193821740_3.jar C:\Users\peter\AppData\Local\Temp\surefire15543189749260192655 2026-05-25T19-38-21_590-jvmRun1 surefire-20260525193821740_1tmp surefire_0-20260525193821740_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="TestClasess.MessageClasstest#testMessageLengthFailure"/>
+    <property name="test" value="TestClasess.MessageClasstest#testMessageLengthSuccess"/>
     <property name="surefire.test.class.path" value="C:\Users\peter\OneDrive\Documentos\NetBeansProjects\ChatApp\target\test-classes;C:\Users\peter\OneDrive\Documentos\NetBeansProjects\ChatApp\target\classes;C:\Users\peter\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\peter\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\peter\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\peter\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\peter\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\peter\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\peter\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\peter"/>
@@ -31,7 +33,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\peter\AppData\Local\Temp\surefire12924801107298030634\surefirebooter-20260522195723985_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\peter\AppData\Local\Temp\surefire15543189749260192655\surefirebooter-20260525193821740_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
@@ -42,6 +44,7 @@
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="jpda.listen" value="true"/>
     <property name="maven.ext.class.path" value="C:\Users\peter\Downloads\netbeans-29-bin\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="localRepository" value="C:\Users\peter\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
@@ -60,10 +63,11 @@
     <property name="stdin.encoding" value="Cp1252"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
+    <property name="maven.surefire.debug" value="-agentlib:jdwp=transport=dt_socket,server=n,address=64239"/>
   </properties>
-  <testcase name="testMessageLengthFailure" classname="TestClasess.MessageClasstest" time="0.071">
-    <system-out><![CDATA[Test: Message length failure (> 250 chars)
-✓ Passed: Long message is rejected with correct message
+  <testcase name="testMessageLengthSuccess" classname="TestClasess.MessageClasstest" time="0.04">
+    <system-out><![CDATA[Test: Message length success (≤ 250 chars)
+✓ Passed: Short message is accepted
 
 ]]></system-out>
   </testcase>

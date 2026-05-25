@@ -1,26 +1,10 @@
 [
   {
-    "messageId": "6534914905",
+    "messageId": "1407246063",
     "messageNumber": 1,
     "recipient": "+27633380663",
-    "messageText": "hey",
-    "messageHash": "65:1:HEYHEY",
+    "messageText": "gire",
+    "messageHash": "14:1:GIREGIRE",
     "status": "sent"
-  },
-  {
-    "messageId": "7719235847",
-    "messageNumber": 2,
-    "recipient": "+27633380667",
-    "messageText": "o sharp?",
-    "messageHash": "77:2:OSHARP",
-    "status": "stored"
-  },
-  {
-    "messageId": "7920003042",
-    "messageNumber": 3,
-    "recipient": "+27690087354",
-    "messageText": "yeah, wena?",
-    "messageHash": "79:3:YEAH,WENA",
-    "status": "disregarded"
   }
 ]
