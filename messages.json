@@ -1,10 +1,18 @@
 [
   {
-    "messageId": "1407246063",
+    "messageId": "2758088706",
     "messageNumber": 1,
     "recipient": "+27633380663",
-    "messageText": "gire",
-    "messageHash": "14:1:GIREGIRE",
+    "messageText": "hey",
+    "messageHash": "27:1:HEYHEY",
     "status": "sent"
+  },
+  {
+    "messageId": "9646471802",
+    "messageNumber": 2,
+    "recipient": "+27633380663",
+    "messageText": "hey, how are you?",
+    "messageHash": "96:2:HEY,YOU",
+    "status": "stored"
   }
 ]
