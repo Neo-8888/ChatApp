@@ -1,42 +1,34 @@
 [
   {
-    "messageId": "5119390420",
+    "messageId": "7501594444",
     "messageNumber": 1,
-    "recipient": "+27633389663",
-    "messageText": "good",
-    "messageHash": "51",
-    "status": "disregarded"
-  },
-  {
-    "messageId": "5438999477",
-    "messageNumber": 1,
-    "recipient": "+27733380663",
+    "recipient": "+27633380663",
     "messageText": "hey",
-    "messageHash": "54:1:HEYHEY",
+    "messageHash": "75:1:HEYHEY",
     "status": "sent"
   },
   {
-    "messageId": "4084243802",
+    "messageId": "7626630588",
     "messageNumber": 2,
-    "recipient": "+27633380666",
+    "recipient": "+27633380667",
     "messageText": "how are you?",
-    "messageHash": "40:2:HOWYOU",
+    "messageHash": "76:2:HOWYOU",
     "status": "disregarded"
   },
   {
-    "messageId": "3141185523",
+    "messageId": "6726475709",
     "messageNumber": 3,
     "recipient": "+27633380663",
-    "messageText": "i am good n you?",
-    "messageHash": "31:3:IYOU",
+    "messageText": "how is your day toda?",
+    "messageHash": "67:3:HOWTODA",
     "status": "stored"
   },
   {
-    "messageId": "7373836804",
-    "messageNumber": 4,
+    "messageId": "9471158250",
+    "messageNumber": 1,
     "recipient": "+27633380663",
-    "messageText": "how is the weather today",
-    "messageHash": "73:4:HOWTODAY",
-    "status": "stored"
+    "messageText": "sharp",
+    "messageHash": "94:1:SHARPSHARP",
+    "status": "disregarded"
   }
 ]

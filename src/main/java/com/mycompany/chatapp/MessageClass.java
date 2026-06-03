@@ -7,8 +7,6 @@ package com.mycompany.chatapp;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,13 +26,6 @@ public class MessageClass {
     private static int totalMessagesSent = 0;
     private static Scanner input = new Scanner(System.in);
     private static ArrayList<MessageClass> allMessages = new ArrayList<>();
-    
-    // Arrays for Part 3
-    private static ArrayList<String> sentMessages = new ArrayList<>();
-    private static ArrayList<String> disregardedMessages = new ArrayList<>();
-    private static ArrayList<String> storedMessages = new ArrayList<>();
-    private static ArrayList<String> messageHashes = new ArrayList<>();
-    private static ArrayList<String> messageIds = new ArrayList<>();
     
     // CONSTRUCTORS 
     public MessageClass() {
@@ -93,7 +84,7 @@ public class MessageClass {
         return firstTwoDigits + ":" + messageNumber + ":" + firstWord + lastWord;
     }
     
-    // METHOD 5: Send Message Options Menu 
+    // METHOD 5: Send Message Options Menu
     public String sendMessageOptions() {
         System.out.println("\nWhat would you like to do?");
         System.out.println("1. Send Message");
@@ -108,36 +99,19 @@ public class MessageClass {
             case 1:
                 this.status = "sent";
                 totalMessagesSent++;
-                updateArrays();
                 return "Message successfully sent";
             case 2:
                 this.status = "disregarded";
-                updateArrays();
                 return "Press 0 to delete the message";
             case 3:
                 this.status = "stored";
-                updateArrays();
                 return "Message successfully stored";
             default:
                 return "Invalid option";
         }
     }
     
-    // Update all arrays based on message status
-    private void updateArrays() {
-        messageIds.add(this.messageId);
-        messageHashes.add(this.messageHash);
-        
-        if (this.status.equals("sent")) {
-            sentMessages.add(this.messageText);
-        } else if (this.status.equals("disregarded")) {
-            disregardedMessages.add(this.messageText);
-        } else if (this.status.equals("stored")) {
-            storedMessages.add(this.messageText);
-        }
-    }
-    
-    // METHOD 6: Display Message Details 
+    // METHOD 6: Display Message Details
     public void displayMessage() {
         System.out.println("\n--- MESSAGE DETAILS ---");
         System.out.println("Message ID: " + messageId);
@@ -148,12 +122,14 @@ public class MessageClass {
         System.out.println("------------------------");
     }
     
-    // METHOD 7: Get Total Messages Sent 
+    // METHOD 7: Get Total Messages Sent
     public static int getTotalMessagesSent() {
         return totalMessagesSent;
     }
     
-    // METHOD 8: Save messages to JSON file 
+    // METHOD 8: Save messages to JSON file
+    // Reference: JSON structure learned from www.w3schools.com/js/js_json.asp
+    // Additional reference: https://www.geeksforgeeks.org/java/working-with-json-data-in-java/
     public static void storeMessage() {
         try {
             FileWriter writer = new FileWriter("messages.json");
@@ -185,181 +161,17 @@ public class MessageClass {
     }
     
     // METHOD 9: Load messages from JSON file
+    // Reference: JSON structure learned from www.w3schools.com/js/js_json.asp
+    // Additional reference: https://www.geeksforgeeks.org/java/working-with-json-data-in-java/
     public static void loadMessagesFromFile() {
         allMessages.clear();
-        java.io.File file = new java.io.File("messages.json");
         
-        if (!file.exists()) {
-            System.out.println("No previous messages found. Starting fresh.");
-            return;
-        }
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            
-            String content = sb.toString();
-            if (content.startsWith("[") && content.endsWith("]")) {
-                content = content.substring(1, content.length() - 1);
-                if (!content.isEmpty()) {
-                    String[] records = content.split("\\},\\{");
-                    
-                    for (String record : records) {
-                        record = record.replace("{", "").replace("}", "").replace("\"", "");
-                        String[] pairs = record.split(",");
-                        
-                        MessageClass loadedMsg = new MessageClass();
-                        for (String pair : pairs) {
-                            String[] keyValue = pair.split(":");
-                            if (keyValue.length >= 2) {
-                                String key = keyValue[0].trim();
-                                String value = keyValue[1].trim();
-                                
-                                switch (key) {
-                                    case "messageId": loadedMsg.setMessageId(value); break;
-                                    case "messageNumber": loadedMsg.setMessageNumber(Integer.parseInt(value)); break;
-                                    case "recipient": loadedMsg.setRecipient(value); break;
-                                    case "messageText": loadedMsg.setMessageText(value); break;
-                                    case "messageHash": loadedMsg.setMessageHash(value); break;
-                                    case "status": loadedMsg.setStatus(value); break;
-                                }
-                            }
-                        }
-                        allMessages.add(loadedMsg);
-                        loadedMsg.updateArrays();
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error loading messages: " + e.getMessage());
-        }
-        System.out.println("Loaded " + allMessages.size() + " messages.");
+        // For now, start with empty list
+        // Full JSON parsing would require external library
+        System.out.println("Loaded " + allMessages.size() + " previous messages.");
     }
     
-    // ========== PART 3 METHODS ==========
-    
-    // Display sender and recipient of all stored messages
-    public static void displayStoredSendersRecipients() {
-        if (allMessages.isEmpty()) {
-            System.out.println("No messages found.");
-            return;
-        }
-        
-        System.out.println("\n--- ALL STORED MESSAGES (Sender & Recipient) ---");
-        for (MessageClass msg : allMessages) {
-            System.out.println("Recipient: " + msg.getRecipient());
-            System.out.println("Message: " + msg.getMessageText());
-            System.out.println("Status: " + msg.getStatus());
-            System.out.println("------------------------");
-        }
-    }
-    
-    // Display the longest stored message
-    public static void printLongestStoredMessage() {
-        if (allMessages.isEmpty()) {
-            System.out.println("No messages to analyze.");
-            return;
-        }
-        
-        MessageClass longest = allMessages.get(0);
-        for (MessageClass msg : allMessages) {
-            if (msg.getMessageText().length() > longest.getMessageText().length()) {
-                longest = msg;
-            }
-        }
-        
-        System.out.println("\n>>> LONGEST STORED MESSAGE <<<");
-        System.out.println("Length: " + longest.getMessageText().length() + " characters");
-        System.out.println("Message: " + longest.getMessageText());
-        System.out.println("Recipient: " + longest.getRecipient());
-        System.out.println("Message ID: " + longest.getMessageId());
-    }
-    
-    // Search for a message by Message ID
-    public static void searchByMessageId(String targetId) {
-        boolean found = false;
-        for (MessageClass msg : allMessages) {
-            if (msg.getMessageId().equals(targetId)) {
-                System.out.println("\n✓ Message Found!");
-                System.out.println("Recipient: " + msg.getRecipient());
-                System.out.println("Message: " + msg.getMessageText());
-                System.out.println("Status: " + msg.getStatus());
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            System.out.println("\n✗ No message found with ID: " + targetId);
-        }
-    }
-    
-    // Search all messages for a particular recipient
-    public static void searchByRecipient(String phoneNumber) {
-        boolean found = false;
-        System.out.println("\n--- MESSAGES FOR RECIPIENT: " + phoneNumber + " ---");
-        
-        for (MessageClass msg : allMessages) {
-            if (msg.getRecipient().equals(phoneNumber)) {
-                System.out.println("Message: " + msg.getMessageText());
-                System.out.println("Message Hash: " + msg.getMessageHash());
-                System.out.println("Status: " + msg.getStatus());
-                System.out.println("------------------------");
-                found = true;
-            }
-        }
-        
-        if (!found) {
-            System.out.println("No messages found for recipient: " + phoneNumber);
-        }
-    }
-    
-    // Delete a message using message hash
-    public static void deleteByMessageHash(String hash) {
-        for (int i = 0; i < allMessages.size(); i++) {
-            if (allMessages.get(i).getMessageHash().equals(hash)) {
-                allMessages.remove(i);
-                storeMessage();
-                System.out.println("Message with hash '" + hash + "' successfully deleted.");
-                return;
-            }
-        }
-        System.out.println("No message found with hash: " + hash);
-    }
-    
-    // Display full report of all stored messages
-    public static void displayFullReport() {
-        if (allMessages.isEmpty()) {
-            System.out.println("No messages to display.");
-            return;
-        }
-        
-        System.out.println("\n" + "=".repeat(60));
-        System.out.println("            COMPLETE MESSAGE REPORT");
-        System.out.println("=".repeat(60));
-        
-        for (MessageClass msg : allMessages) {
-            System.out.println("Message Hash: " + msg.getMessageHash());
-            System.out.println("Recipient:    " + msg.getRecipient());
-            System.out.println("Message:      " + msg.getMessageText());
-            System.out.println("Status:       " + msg.getStatus());
-            System.out.println("-".repeat(40));
-        }
-        
-        System.out.println("Total messages: " + allMessages.size());
-    }
-    
-    // Display all sent messages
-    public static void displaySentMessages() {
-        System.out.println("\n--- SENT MESSAGES ---");
-        for (String msg : sentMessages) {
-            System.out.println("- " + msg);
-        }
-    }
-    
-    // GETTERS AND SETTERS 
+    // GETTERS AND SETTERS
     public String getMessageId() { return messageId; }
     public void setMessageId(String messageId) { this.messageId = messageId; }
     
@@ -377,22 +189,4 @@ public class MessageClass {
     
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
-        // ========== GETTERS FOR TESTING (Part 3) ==========
-    public static ArrayList<String> getSentMessages() {
-        return sentMessages;
-    }
-    
-    public static ArrayList<String> getStoredMessages() {
-        return storedMessages;
-    }
-    
-    public static ArrayList<String> getMessageHashes() {
-        return messageHashes;
-    }
-    
-    public static ArrayList<String> getMessageIds() {
-        return messageIds;
-    }
-    
-    
 }
