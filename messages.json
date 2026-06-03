@@ -1,18 +1,42 @@
 [
   {
-    "messageId": "2758088706",
+    "messageId": "5119390420",
     "messageNumber": 1,
-    "recipient": "+27633380663",
+    "recipient": "+27633389663",
+    "messageText": "good",
+    "messageHash": "51",
+    "status": "disregarded"
+  },
+  {
+    "messageId": "5438999477",
+    "messageNumber": 1,
+    "recipient": "+27733380663",
     "messageText": "hey",
-    "messageHash": "27:1:HEYHEY",
+    "messageHash": "54:1:HEYHEY",
     "status": "sent"
   },
   {
-    "messageId": "9646471802",
+    "messageId": "4084243802",
     "messageNumber": 2,
+    "recipient": "+27633380666",
+    "messageText": "how are you?",
+    "messageHash": "40:2:HOWYOU",
+    "status": "disregarded"
+  },
+  {
+    "messageId": "3141185523",
+    "messageNumber": 3,
     "recipient": "+27633380663",
-    "messageText": "hey, how are you?",
-    "messageHash": "96:2:HEY,YOU",
+    "messageText": "i am good n you?",
+    "messageHash": "31:3:IYOU",
+    "status": "stored"
+  },
+  {
+    "messageId": "7373836804",
+    "messageNumber": 4,
+    "recipient": "+27633380663",
+    "messageText": "how is the weather today",
+    "messageHash": "73:4:HOWTODAY",
     "status": "stored"
   }
 ]

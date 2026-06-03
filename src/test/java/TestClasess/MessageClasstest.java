@@ -45,7 +45,7 @@ public void testMessageLengthFailure() {
     
     String result = msg.checkMessageLength(longMessage.toString());
     
-    // CHANGE THIS LINE to use assertEquals with the exact required string:
+    // CHANGE THIS LINE use assertEquals 
     assertEquals("Message exceeds 250 characters by 10; please reduce the size.", result);
     System.out.println("✓ Passed: Long message is rejected with correct message\n");
 }
@@ -128,5 +128,6 @@ public void testMessageLengthFailure() {
         assertEquals("99:5:HELLOHELLO", hash);
         System.out.println("✓ Passed: One word message hash is correct\n");
     }
+    
 }
     
