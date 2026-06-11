@@ -53,7 +53,7 @@ public void testMessageLengthFailure() {
     // TEST 3: Recipient SUCCESS (+27 format) 
     @Test
     public void testRecipientSuccess() {
-        System.out.println("Test: Recipient format success (+27XXXXXXXXX)");
+        System.out.println("Test: Recipient format success (+27)");
         
         MessageClass msg = new MessageClass();
         String result = msg.checkRecipientCell("+27718693002");
